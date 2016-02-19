@@ -28,6 +28,7 @@ var create_sentence = {
     WordInput: function(params){
         var _self = this;
         this.parent = params.parent || null;
+        this.container = lib.create('DIV', null, {className: 'suggestions_container'});
         this.element = lib.create('INPUT', null, null);
         this.suggestions = lib.create('DIV', null, {className: 'suggestions_div'});
 
@@ -48,6 +49,7 @@ var create_sentence = {
 
             function onWordsReceive(){
                 var options = getSuggestions(this.JSON);
+                lib.$(_self.suggestions).clear();
                 _self.suggestions.appendChild(options);
                 _input.is_request = false;
             }
@@ -62,8 +64,10 @@ var create_sentence = {
         }
 
         if(this.parent instanceof HTMLElement){
-            this.parent.appendChild(this.element);
-            this.parent.appendChild(this.suggestions);
+            this.container.appendChild(this.element);
+            this.container.appendChild(this.suggestions);
+            this.parent.appendChild(this.container);
+
         }
         return this;
     }

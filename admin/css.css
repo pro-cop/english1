@@ -1,0 +1,14 @@
+.suggestions_container{
+    position: relative;
+    display: inline-block;
+}
+.suggestions_div{
+    position: absolute;
+    top: 1.4em;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 4px 12px;
+}
+.suggestions_div span{
+    display: block;
+}

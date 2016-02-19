@@ -27,6 +27,14 @@ var lib = {
             }
             return this;
         };
+        el.clear = function(){
+            var el = this;
+            this.childNodes.forEach = [].forEach;
+            this.childNodes.forEach(function(item){
+                el.removeChild(item);
+            });
+            return this;
+        };
 
         return el;
     },
@@ -38,7 +46,7 @@ var lib = {
         if(properties){
             for(var key in properties){
                 if(properties.hasOwnProperty(key)){
-                    if( el[key]){
+                    if( el[key] !== undefined ){
                         el[key] = properties[key];
                     }
                     else{
@@ -49,6 +57,7 @@ var lib = {
         }
         return el;
     },
+
     ajax: function( file_name, action, callback, parameters){
             var xhr = new XMLHttpRequest();
             var formData = new FormData();
