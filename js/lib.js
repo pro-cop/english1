@@ -30,6 +30,25 @@ var lib = {
 
         return el;
     },
+    create: function(tag_name, text, properties){
+        var el = document.createElement(tag_name.toUpperCase());
+        if(text){
+            el.appendChild(document.createTextNode(text));
+        }
+        if(properties){
+            for(var key in properties){
+                if(properties.hasOwnProperty(key)){
+                    if( el[key]){
+                        el[key] = properties[key];
+                    }
+                    else{
+                        el.dataset[key] = properties[key];
+                    }
+                }
+            }
+        }
+        return el;
+    },
     ajax: function( file_name, action, callback, parameters){
             var xhr = new XMLHttpRequest();
             var formData = new FormData();

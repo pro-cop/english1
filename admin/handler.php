@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     else if($action == 'get_words'){
         $word = $mysqli->real_escape_string( $_POST['word'] );
 
-        $result = $mysqli->query("SELECT `word` FROM  `words` WHERE `word` LIKE '{$word}%'");
+        $result = $mysqli->query("SELECT `word`, `id` FROM  `words` WHERE `word` LIKE '{$word}%'");
         while(  $row = $result->fetch_array(MYSQLI_ASSOC) ){
             array_push($arr, $row );
         }

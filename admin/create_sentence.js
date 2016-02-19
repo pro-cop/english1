@@ -28,7 +28,9 @@ var create_sentence = {
     WordInput: function(params){
         var _self = this;
         this.parent = params.parent || null;
-        this.element = document.createElement('INPUT');
+        this.element = lib.create('INPUT', null, null);
+        this.suggestions = lib.create('DIV', null, {className: 'suggestions_div'});
+
         this.element.onkeyup = function(){
             var len = this.value.length;
             if(!this.is_request && len>3){
@@ -42,13 +44,26 @@ var create_sentence = {
             var params = {
                 word: _input.value
             };
-            lib.ajax('handler.php', 'get_words', function(){
-                console.log(params.word + ' '+ _input.value);
+            lib.ajax('handler.php', 'get_words', onWordsReceive, params);
+
+            function onWordsReceive(){
+                var options = getSuggestions(this.JSON);
+                _self.suggestions.appendChild(options);
                 _input.is_request = false;
-            }, params);
+            }
+            function getSuggestions(arr){
+                var frag = document.createDocumentFragment();
+                arr.forEach(function(item){
+                    var span = lib.create('SPAN', item.word, {className: 'suggestion', id: item.id});
+                    frag.appendChild(span);
+                });
+                return frag;
+            }
         }
+
         if(this.parent instanceof HTMLElement){
             this.parent.appendChild(this.element);
+            this.parent.appendChild(this.suggestions);
         }
         return this;
     }
