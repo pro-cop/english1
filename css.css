@@ -1,0 +1,73 @@
+#options_table{
+    background-color: #e9e9e9;
+}
+#options_table td{
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid white;
+}
+
+p#answer{
+    display: flex;
+    font-size: 1.6em;
+    background-color: #f4f4f4;
+    padding: 10px;
+}
+
+p#answer.interrogative:after{
+    content: '?'
+}
+p#answer div {
+    display: flex;
+    border: 1px solid white;
+    margin: 3px;
+    padding:3px;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+p#answer span {
+    display: flex;
+}
+p#answer span.error{
+    visibility: hidden;
+}
+p#answer div.has_error span.error{
+    visibility: visible;
+}
+p#answer span.chosen{
+    color: blue;
+}
+p#answer span.error{
+    top: -1.2em;
+    left: 0;
+    color: red;
+    font-weight: bold;
+    margin:0;
+    font-size: 0.8em;
+}
+
+button#next{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 10px;
+    cursor: pointer;
+}
+button#next:active{
+    background-color: #eee;
+}
+
+div#results .bullet{
+    border: 1px solid #ccc;
+    width: 8px;
+    height: 8px;
+    border-radius: 5px;
+    margin: 5px;
+    background-color: green;
+    display: inline-block;
+}
+div#results .bullet.fault{
+    background-color: red;
+}
