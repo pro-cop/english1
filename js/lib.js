@@ -17,7 +17,7 @@ var lib = {
 
         el.append = function (child) {
             var span;
-            if (child instanceof HTMLElement) {
+            if (child instanceof HTMLElement || child instanceof DocumentFragment) {
                 this.appendChild(child);
             }
             else if( typeof child == 'string'){
@@ -28,12 +28,18 @@ var lib = {
             return this;
         };
         el.clear = function(){
-            var el = this;
-            this.childNodes.forEach = [].forEach;
-            this.childNodes.forEach(function(item){
-                el.removeChild(item);
-            });
+            while(this.childNodes.length){
+                this.removeChild(this.childNodes[0])
+            }
             return this;
+        };
+        el.css = function(params){
+            for(var key in params){
+                if(params.hasOwnProperty(key)){
+                    var camel_case_key = key.replace(/-[(a-z)]/g, function(match){return match.charAt(1).toUpperCase()});
+                    el.style[camel_case_key] = params[key];
+                }
+            }
         };
 
         return el;

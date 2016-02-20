@@ -1,6 +1,6 @@
 <?php
 require_once('../php/functions.php');
-error_reporting(0);
+error_reporting(1);
 
 $db_host = 'localhost';
 $db_user = 'root';
